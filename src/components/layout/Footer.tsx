@@ -34,7 +34,7 @@ export function Footer(){
             <div className="container-custom">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
-                   <a href="#" className="">
+                   <a href="/" className="">
                     <div className="flex items-center mb-6">
                       <div className=" w-8 h-8 rounded-md flex items-center justify-center mr-2 bg-primary">
                       <ShoppingCart className=" text-white h-5 w-5" />

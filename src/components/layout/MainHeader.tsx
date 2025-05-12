@@ -25,7 +25,7 @@ export function MainHeader(){
               <div className="flex items-center justify-between">
 
                 {/* Logo */}
-                <a href="#" className="flex-shrink-0">
+                <a href="/" className="flex-shrink-0">
                  <div className="flex items-center">
                     {/* //Falta un bg general especifico */}
                     <div className=" w-8 h-8 rounded-md flex items-center justify-center mr-2 bg-primary">
