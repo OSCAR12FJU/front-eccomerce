@@ -77,7 +77,7 @@ export function MainHeader(){
                         <button onClick={toggleSideBar} className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
                             <X className="h-4 w-4" />
                         </button>
-                        <div className="mb-8">
+                        <div className="mb-4 ">
                             <a href="/" className="flex items-center mb-6">
                             <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center mr-2">
                                 <ShoppingCart className="h-5 w-5 text-white" />

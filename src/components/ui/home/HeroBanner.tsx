@@ -3,11 +3,11 @@ export function HeroBanner(){
 <div className="relative h-[350px] md:h-[400px] lg:h-[500px] overflow-hidden bg-blue-900">
 {/* //Banner image */}
         <div className="absolute inset-0 w-full h-full">
-          <img 
+          {/* <img 
            src="https://ext.same-assets.com/2423255211/4290106307.webp"
            alt="INACART - Kitchen Gadgets"
            className="object-cover w-full h-full"
-           />
+           /> */}
         </div>
 
         {/* //Content banner */}

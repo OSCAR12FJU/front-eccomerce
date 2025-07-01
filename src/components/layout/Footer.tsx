@@ -130,10 +130,10 @@ export function Footer(){
           <div className="bg-primary text-white py-4">
             <div className="container-custom">
             <div className="flex flex-col md:flex-row justify-between items-center">
-                <p className="text-sm">Copyright © {new Date().getFullYear()} inacart.pk All Rights Reserved</p>
-                <p className="text-sm mt-2 md:mt-0">
+                <p className="text-sm">Copyright © {new Date().getFullYear()} INACART</p>
+                {/* <p className="text-sm mt-2 md:mt-0">
                 Powered By: <a href="/" className="underline">INACART</a>
-                </p>
+                </p> */}
             </div>
             </div>
             </div>
