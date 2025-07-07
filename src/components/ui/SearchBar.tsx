@@ -121,7 +121,7 @@ export default function SearchBar({className}:{className?: string}) {
                   type="text"
                   value={query}
                   onChange={handleInputChange}
-                  placeholder="Поиск по названию или категории..."
+                  placeholder="What Are You Looking For"
                   className="w-full border border-gray-300 rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <SearchIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
