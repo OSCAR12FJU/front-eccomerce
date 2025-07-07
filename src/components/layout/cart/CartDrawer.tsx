@@ -39,15 +39,15 @@ export default function CartDrawer({isOpen, toogleSidebarCart}: CartDrawerProps)
 
     const handleRemoveItem = useCallback((productId: string, productName: string) => {
         removeItem(productId);
-        showToast(`${productName}  removed from cart`, "info");
+        showToast(`${productName}  eliminado del carrito`, "info");
       }, [removeItem, showToast]);
     
       const handleUpdateQuantity = useCallback((productId: string, quantity: number, productName: string) => {
         updateQuantity(productId, quantity);
         if (quantity === 0) {
-          showToast(`${productName} quantity updated`, "info");
+          showToast(`${productName} cantidad actualizada`, "info");
         } else {
-          showToast(`Количество ${productName} обновлено`, "success");
+          showToast(`Cantidad de ${productName} actualizada.`, "success");
         }
       }, [updateQuantity, showToast]);
     
@@ -172,15 +172,15 @@ export default function CartDrawer({isOpen, toogleSidebarCart}: CartDrawerProps)
 
           <div className="border-t border-gray-200 p-4">
             <div className="flex justify-between text-base font-medium text-gray-900 mb-4">
-              <p>Итого</p>
-              <p>{totalPrice.toLocaleString('ru-RU')} ₽</p>
+              <p>Total</p>
+              <p>{totalPrice.toLocaleString('en-US')} $</p>
             </div>
             <button
               type="button"
               className="btn-primary w-full py-3"
             //   onClick={goToCheckout}
             >
-              Checkout
+              Pagar
             </button>
             <div className="mt-2">
               <button

@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { ProductType } from "../ProductCard"
 import { MainLayout } from "../../layout/MainLayout";
 import { ChevronRight, Home, Minus, Plus, Share2, ShoppingCart } from "lucide-react";
 import ProductCard from "../ProductCard";
+// import { useAddToCart } from "../../../hooks/useAddToCart";
+import { useCart } from "../../../lib/CartContext";
 
 interface ProductContentProps {
     product: ProductType | null
@@ -10,8 +12,16 @@ interface ProductContentProps {
   }
 
 export default function ProductContent({product, relatedProducts = []}: ProductContentProps){
-    const [quantity, setQuantity] = useState(1);
-    const [activeTab, setActiveTab] = useState("description");
+  const {items, updateQuantity, addItem} = useCart();
+  const cartItem = items.find((item) => item.product.id === product?.id);
+  const [activeTab, setActiveTab] = useState("description");
+  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+
+  useEffect(() =>{
+    if(cartItem){
+      setQuantity(cartItem.quantity);
+    }
+  }, [cartItem]);
 
     if(!product){
        return( <MainLayout>
@@ -28,6 +38,11 @@ export default function ProductContent({product, relatedProducts = []}: ProductC
         </MainLayout>)
 
     }
+
+    // const addToCartClick = () =>{
+    //   handleAddToCart(product, quantity);
+    // }
+    console.log("data del local", localStorage.getItem("cart"))
 
     const {
         name,
@@ -46,11 +61,29 @@ export default function ProductContent({product, relatedProducts = []}: ProductC
     const hasDiscount = originalPrice && originalPrice > price;
 
     const increaseQunatity = () => {
-        setQuantity(prev => prev + 1);
+      const newQuantity = quantity + 1;
+        setQuantity(newQuantity);
+        if(cartItem){
+          updateQuantity(product.id, newQuantity)
+        }
     }
     const decreaseQunatity = () => {
-        setQuantity(prev => (prev > 1 ? prev - 1 : 1 ));
+      const newQuantity = quantity > 1 ? quantity - 1 : 1;
+       setQuantity(newQuantity);
+
+       if(cartItem && newQuantity > 0){
+        updateQuantity(product.id, newQuantity)
+       }
     }
+
+    const addToCartClick = () =>{
+      addItem(product, quantity)
+    }
+
+    // const handleUpdateQuantity = useCallback((productID: string, quality: number) =>{
+
+
+    // })
 
 
     // const addToCart = () =>{
@@ -140,7 +173,8 @@ export default function ProductContent({product, relatedProducts = []}: ProductC
                     Add to Cart
                   </button> */}
                   <button
-                   className="w-full flex items-center justify-center gap-2 bg-primary text-sm font-medium focus-visible:outline-none text-primary-foreground shadow hover:bg-primary/90 px-4 py-2 rounded-md">
+                   className="w-full flex items-center justify-center gap-2 bg-primary text-sm font-medium focus-visible:outline-none text-primary-foreground shadow hover:bg-primary/90 px-4 py-2 rounded-md"
+                   onClick={addToCartClick}>
                     <ShoppingCart size={16} />
                       <span>Add to Cart</span>
                   </button>

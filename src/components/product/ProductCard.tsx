@@ -1,3 +1,4 @@
+import { useAddToCart } from "../../hooks/useAddToCart";
 import { ShoppingCart } from "lucide-react"
 
 export type ProductType = {
@@ -33,6 +34,8 @@ export type ProductType = {
       }
 
       const hasDiscount = originalPrice && originalPrice > price;
+
+      const {handleAddToCart} = useAddToCart();
 
       return(
         <div className="group bg-white shadow-sm hover:shadow-md transition-shadow rounded-md overflow-hidden flex flex-col" >
@@ -75,17 +78,23 @@ export type ProductType = {
           }
          </div>
         </div>
+        </a>
 
         {/* Add to Cart Button */}
       <div className="p-4 pt-0 ">
         <button
-          className="w-full flex items-center justify-center gap-2 bg-primary text-sm font-medium focus-visible:outline-none text-primary-foreground shadow hover:bg-primary/90 px-4 py-2 rounded-md">
+          className="w-full flex items-center justify-center gap-2 bg-primary text-sm font-medium focus-visible:outline-none text-primary-foreground shadow hover:bg-primary/90 px-4 py-2 rounded-md"
+          onClick={() => handleAddToCart(product)}>
           <ShoppingCart size={16} />
           <span>Add to Cart</span>
         </button>
+
+        {/* <button
+          className="flex items-center justify-center bg-white border-gray-400 rounded-full text-sm font-medium focus-visible:outline-none text-primary-foreground shadow hover:bg-primary/90 px-2 py-1">
+          <Eye size={16} />
+        </button> */}
       </div>
 
-      </a>
 
         </div>
       )

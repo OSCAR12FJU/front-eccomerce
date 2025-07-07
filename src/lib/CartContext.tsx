@@ -20,27 +20,24 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({children}: {children : ReactNode}){
 
-    const [items, setItems] = useState<CartItem[]>([]);
+     const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      const savedCart = localStorage.getItem("cart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error("Failed to load cart from localStorage:", error);
+      return [];
+    }
+  });
 
-    useEffect(() => {
-        try {
-          const savedCart = localStorage.getItem("cart");
-          if (savedCart) {
-            setItems(JSON.parse(savedCart));
-          }
-        } catch (error) {
-          console.error("Failed to load cart from localStorage:", error);
-        }
-      }, []);
-
-    useEffect(()=>{
-        try{
-        localStorage.setItem("cart",  JSON.stringify(items));
-        }catch(error){
-        console.error("Failed to save cart to localStorage", error);
-        }
-    }, [items]);
-
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(items));
+    } catch (error) {
+      console.error("Failed to save cart to localStorage", error);
+    }
+  }, [items]);
+    
     const addItem = (product: ProductType, quantity = 1) => {
         setItems((prevItems) => {
         // Check if product already exists in cart

@@ -1,3 +1,4 @@
+import { useCart } from "../../../lib/CartContext"
 import { ShoppingCart } from "lucide-react";
 
 interface CartIconsProps{
@@ -6,7 +7,7 @@ interface CartIconsProps{
 
 
 export default function CartIcon({onClick}: CartIconsProps){
-    const itemCount = 1;
+    const {itemCount} = useCart();
     return(
         <button
          type="button"
